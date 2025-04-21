@@ -1,49 +1,55 @@
-import HeaderBox from '@/components/ui/HeaderBox'
-import RightSideBar from '@/components/ui/RightSideBar'
-import TotalBalanceBox from '@/components/ui/TotalBalanceBox'
-import React from 'react'
+import HeaderBox from '@/components/HeaderBox'
+import RecentTransactions from '@/components/RecentTransactions';
+import RightSidebar from '@/components/RightSidebar';
+import TotalBalanceBox from '@/components/TotalBalanceBox';
+import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
+import { getLoggedInUser } from '@/lib/actions/user.actions';
 
-const Home = () => {
-    const loggedIn = {
-        $id: "user_002",
-        email: "charanrajb282004@gmail.com",
-        userId: "charanraj_001",
-        dwollaCustomerUrl: "https://api.dwolla.com/customers/charanraj_001",
-        dwollaCustomerId: "charanraj_001",
-        firstName: "Charan Raj",
-        lastName: "B",
-        address1: "42 Galaxy Avenue",
-        city: "Bengaluru",
-        state: "KA",
-        postalCode: "560001",
-        dateOfBirth: "2004-08-28",
-        ssn: "4321"
-      }
+const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
+  const currentPage = Number(page as string) || 1;
+  const loggedIn = await getLoggedInUser();
+  const accounts = await getAccounts({ 
+    userId: loggedIn.$id 
+  })
+
+  if(!accounts) return;
+  
+  const accountsData = accounts?.data;
+  const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
+
+  const account = await getAccount({ appwriteItemId })
+
   return (
-    <section className='home'>
-        <div className="home-content">
-            <header className="home-header">
-                <HeaderBox 
-                    type="greeting"
-                    title="welcome"
-                    user={loggedIn?.firstName|| 'guest'}
-                    subtext="Access and manage your account and transactions efficiently"
-                />
+    <section className="home">
+      <div className="home-content">
+        <header className="home-header">
+          <HeaderBox 
+            type="greeting"
+            title="Welcome"
+            user={loggedIn?.firstName || 'Guest'}
+            subtext="Access and manage your account and transactions efficiently."
+          />
 
-                <TotalBalanceBox
-                    accounts={[]}
-                    totalBanks={1}
-                    totalCurrentBalance={12500000}
-                />
-            </header>
+          <TotalBalanceBox 
+            accounts={accountsData}
+            totalBanks={accounts?.totalBanks}
+            totalCurrentBalance={accounts?.totalCurrentBalance}
+          />
+        </header>
 
-            <h1>RECENT TRANSACTIONS</h1>
-        </div>
-        <RightSideBar
-            user={loggedIn}
-            transactions={[]}
-            banks={[{currentBalance : 123.50 },{currentBalance:500.50}]}
+        <RecentTransactions 
+          accounts={accountsData}
+          transactions={account?.transactions}
+          appwriteItemId={appwriteItemId}
+          page={currentPage}
         />
+      </div>
+
+      <RightSidebar 
+        user={loggedIn}
+        transactions={account?.transactions}
+        banks={accountsData?.slice(0, 2)}
+      />
     </section>
   )
 }
