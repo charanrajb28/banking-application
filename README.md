@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Horizon – Modern Full-Stack Banking SaaS Platform
 
-## Getting Started
+Horizon is a financial SaaS platform built with **Next.js** and **TypeScript** that connects to multiple bank accounts using **Plaid**, displays real-time transactions, and enables secure money transfers via **Dwolla**. The project integrates **Appwrite** for backend services, uses **TailwindCSS** for styling, and visualizes data with **Chart.js**.
 
-First, run the development server:
+## 📋 Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Introduction](#introduction)
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Code Snippets](#code-snippets)
+- [Assets](#assets)
+- [Links](#links)
+- [More](#more)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🤖 Introduction
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Horizon is a financial platform designed to help users manage their finances by linking multiple bank accounts, viewing transactions in real-time, and transferring money to others. It’s built using modern technologies and follows best practices for full-stack web development.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+![Horizon Overview](images\image2.png);
 
-## Learn More
+If you're getting started and need assistance or face any bugs, join our active Discord community with over 34k+ members. It's a place where people help each other out.
 
-To learn more about Next.js, take a look at the following resources:
+## ⚙️ Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🛠️ **Frontend:**
+- **Next.js** – React framework for SSR & routing
+- **React Hook Form** – Form management
+- **Zod** – Schema validation
+- **TailwindCSS** – Utility-first CSS framework
+- **Chart.js** – Data visualization
+- **ShadCN UI** – Accessible component library
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 💾 **Backend & Services:**
+- **Appwrite** – Backend-as-a-Service for database, auth, storage
+- **Plaid** – Bank account linking and transaction data
+- **Dwolla** – Money transfer and payments
 
-## Deploy on Vercel
+### 🧪 **Other Tools:**
+- **TypeScript** – Static typing for JavaScript
+- **Git** – Version control
+- **ENV Configuration** – Secure credentials setup
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔋 Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Authentication**: Ultra-secure SSR authentication with proper validations and authorization.
+- **Connect Banks**: Integrates with **Plaid** to link multiple bank accounts.
+- **Home Page**: Shows general account overview, total balance from all connected banks, recent transactions, and spending categories.
+- **My Banks**: View a list of connected banks with respective balances and account details.
+- **Transaction History**: Pagination and filtering for viewing transaction history.
+- **Real-time Updates**: Reflects changes across pages when new bank accounts are connected.
+- **Funds Transfer**: Allows users to transfer funds via **Dwolla** to other accounts.
+- **Responsiveness**: Seamless user experience across desktop, tablet, and mobile devices.
+
+## 🤸 Quick Start
+
+### Prerequisites
+
+Ensure the following are installed on your machine:
+
+- **Git**
+- **Node.js**
+- **npm (Node Package Manager)**
+
+### Cloning the Repository
+
